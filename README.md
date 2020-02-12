@@ -12,7 +12,7 @@ As soon as Tamagotchi hatches, it will beep at you for attention. This is where 
 
 * PLAY: Press A button until the bat and ball icon is highlighted, then press B button to begin the game. The object is to guess which way Tamagotchi will turn. To choose left, press the A button, to choose right, press the B button. If you choose the correct direction, Tamagotchi will be happy. There are 5 chances in each game to match Tamagotchi; the more you match, the happier Tamagotchi will be. To stop the game press the C button. After playing, check the happiness meter to see if it went up or down.
 
-* HEALTH METER: Check Tamagotchi's health, by pressing the A button until the Health Meter icon is highlighted, then press B button to check Tamagotchi's age/weight, discipline, hunger and happiness. After you have checked all the screens to see if Tamagotchi needs anything, press C to return to the main screen. You should also check this screen if Tamagotchi beeps at you and the "attention" icon is highlighted.
+* HAPPY METER: Check Tamagotchi's health, by pressing the A button until the Health Meter icon is highlighted, then press B button to check Tamagotchi's age/weight, discipline, hunger and happiness. After you have checked all the screens to see if Tamagotchi needs anything, press C to return to the main screen. You should also check this screen if Tamagotchi beeps at you and the "attention" icon is highlighted.
 
 
 ## Setup/Installation Requirements
@@ -27,13 +27,29 @@ As soon as Tamagotchi hatches, it will beep at you for attention. This is where 
 
 ## Specs
 
-* Tamagotchi will have three buttons that FEED, PLAY, and determine the HEALTH of its current game
+* Happiness should deplete by -10 units/sec.
+    * Input: After 1 second upon initialization.
+    * Output: Happiness is (90);
 
-Behavior | Input | Output |
---- | --- | --- |
-|wake up the tamagotchi | select the power button | wakes up the tamagotchi|
-|The Tamagotchi eats and collects health points | Hit the button | Feeds the Tamagotchi|
+* Hunger should deplete by -10 units/sec.
+    * Input: After 1 second upon initialization.
+    * Output: Hunger is (90);
 
+* Hunger should deplete by -5 units/3 secs, and Happiness increases by +5/3 secs as the Tamagotchi plays.
+    * Input: After 1 second upon "play".
+    * Output: Hunger is (85); Happiness increments to 100 max.
+
+* Happiness maximum is 100
+    * Input: Click; happiness, sleep, and hunger do not go over 100.
+    * Output: Maximum is 100.
+
+* User hits button to play with Tamagotchi
+    * Input: Click. Tamagotchi plays for 3 seconds.
+    * Output: Increment Happiness by +5/3 seconds.
+
+* Pet Tamagotchi 
+    * Input: Upon button press, relenish happiness by +5/ 3 seconds.
+    * Output: Happiness increments +5/3 seconds.
 
 ## Known Bugs
 

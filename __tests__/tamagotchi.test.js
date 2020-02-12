@@ -11,27 +11,37 @@ describe("Tamagotchi", () => {
     afterEach( function() {
         jest.clearAllTimers();
     });
-
-    test('if the power button is selected the tamagotchi wakes up', () => {
-        expect(tamagotchi.wakeUp()).toEqual("Hello, I am Hiro");
-    });
-
-    test('check if the tamagotchi has been fed', () => {
-        tamagotchi.setHunger();
-        jest.advanceTimersByTime(3001);
-        expect(tamagotchi.feed).toEqual(7);
-    });
-
+    
     test('test for decrement health value over time', () => {
-        tamagotchi.setHealth();
-        jest.advanceTimersByTime(25001);
-        expect(tamagotchi.health).toEqual(75);
+        tamagotchi.setHappiness();
+        jest.advanceTimersByTime(1001);
+        expect(tamagotchi.happiness).toEqual(90);
     });
-    test('should increase the health every second the tamagotchi plays', () => {
-        tamagotchi.play();
-        jest.advanceTimersByTime(10001);
-        expect(tamagotchi.health).toEqual(90);
+    
+    test('test for decrement hunger value over time', () => {
+        tamagotchi.setHunger();
+        jest.advanceTimersByTime(1001);
+        expect(tamagotchi.hunger).toEqual(90);
     });
+
+    test('test for feeding the tamagotchi after its hunger has decremented', () => {
+        tamagotchi.feedTamagotchi();
+        jest.advanceTimersByTime(1001);
+        expect(tamagotchi.hunger).toEqual(100);
+    });
+
+    test('test to make the tamagotchi go to sleep when sleep meter is low', () => {
+        tamagotchi.timeForBed();
+        jest.advanceTimersByTime(1001);
+        expect(tamagotchi.sleep).toEqual(100);
+    });
+    
+    // test('should decrease the health every second the tamagotchi plays', () => {
+    //     tamagotchi.play();
+    //     jest.advanceTimersByTime(3001);
+    //     expect(tamagotchi.health).toEqual(85);
+    //     expect(tamagotchi.feed).toEqual(85);
+    // });
 
 
 });

@@ -2,47 +2,57 @@
 export class Tamagotchi {
   constructor(tamagotchi) {
     this.tamagotchi = tamagotchi;
-    this.health = 100;
-    this.feed = 10;
-    this.play = 0; 
+    this.happiness = 100;
+    this.hunger = 100;
+    this.sleep = 100;
+    this.busy = false;
+    this.alive = true;
+    // this.play = 0; 
   }
 
-  wakeUp() {
-    return "Hello, I am " + this.tamagotchi;
+  setHappiness() {
+    setInterval( () => {
+      if (this.happiness > 0) {
+        this.happiness -= 10;
+      }
+    }, 1000);
   }
 
   setHunger() {
-    setInterval(() => {
-      this.feed --;
-    }, 1000);
-    
-  }
-  play(){
-    setInterval(() => {
-      this.health --;
-      this.feed --;
-    }, 1000);
-  }
-
-  getFood(){
-    return this.feed;
-  }
-
-  getHealth(){
-    return this.health;
-  }
-
-  countDown(){
-    setInterval(() => {
-      if(this.health == 0){
-        return this.health;
+    setInterval( () => {
+      if (this.hunger > 0) {
+        this.hunger -= 10;
       }
-      else{
-        this.health --;
-      }
-    }, 1000)
+    }, 1000);
+  }   
 
+  setTired() {
+    setInterval( () => {
+      if (this.sleep > 0) {
+        this.sleep -= 10;
+      }
+    }, 1000);
   }
   
+  feedTamagotchi() {
+    if (this.busy === false && this.alive === true) {
+      this.hunger = 100;
+      this.busy = true;
+      setTimeout( () => {
+        this.busy = false;
+      }, 1000 * 5);
+    }
+  }
 
+  timeForBed() {
+    if (this.busy === false && this.alive === true) {
+      this.sleep = 100;
+      this.busy = true;
+      setInterval( () => {
+        this.busy = false;
+      }, 1000);
+    }
+  }
+
+  
 }
